@@ -1,0 +1,132 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21 0000 DF93      		push r29
+  22 0002 CF93      		push r28
+  23 0004 CDB7      		in r28,__SP_L__
+  24 0006 DEB7      		in r29,__SP_H__
+  25 0008 6097      		sbiw r28,16
+  26 000a 0FB6      		in __tmp_reg__,__SREG__
+  27 000c F894      		cli
+  28 000e DEBF      		out __SP_H__,r29
+  29 0010 0FBE      		out __SREG__,__tmp_reg__
+  30 0012 CDBF      		out __SP_L__,r28
+  31               	/* prologue: function */
+  32               	/* frame size = 16 */
+  33               	.LM2:
+  34 0014 DE01      		movw r26,r28
+  35 0016 1196      		adiw r26,1
+  36 0018 E0E0      		ldi r30,lo8(C.0.1256)
+  37 001a F0E0      		ldi r31,hi8(C.0.1256)
+  38 001c 80E1      		ldi r24,lo8(16)
+  39               	.L2:
+  40 001e 0190      		ld r0,Z+
+  41 0020 0D92      		st X+,r0
+  42 0022 8150      		subi r24,lo8(-(-1))
+  43 0024 01F4      		brne .L2
+  44               	.LM3:
+  45 0026 8FEF      		ldi r24,lo8(-1)
+  46 0028 8AB9      		out 42-32,r24
+  47 002a 40E0      		ldi r20,lo8(0)
+  48 002c 50E0      		ldi r21,hi8(0)
+  49               	.LVL0:
+  50               	.LM4:
+  51 002e DE01      		movw r26,r28
+  52 0030 1196      		adiw r26,1
+  53               	.LBB12:
+  54               	.LBB13:
+  55               	.LBB14:
+  56               	.LBB15:
+  57               	.LM5:
+  58 0032 60ED      		ldi r22,lo8(2000)
+  59 0034 77E0      		ldi r23,hi8(2000)
+  60 0036 00C0      		rjmp .L10
+  61               	.LVL1:
+  62               	.L4:
+  63               	.LBE15:
+  64               	.LBE14:
+  65               	.LBE13:
+  66               	.LBE12:
+  67               	.LM6:
+  68 0038 EBB9      		out 43-32,r30
+  69               	.LBB19:
+  70               	.LBB18:
+  71               	.LBB17:
+  72               	.LBB16:
+  73               	.LM7:
+  74 003a CB01      		movw r24,r22
+  75               	/* #APP */
+  76               	 ;  105 "c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  77 003c 0197      		1: sbiw r24,1
+  78 003e 01F4      		brne 1b
+  79               	 ;  0 "" 2
+  80               	/* #NOAPP */
+  81               	.LBE16:
+  82               	.LBE17:
+  83               	.LBE18:
+  84               	.LBE19:
+  85               	.LM8:
+  86 0040 2F5F      		subi r18,lo8(-(1))
+  87 0042 3F4F      		sbci r19,hi8(-(1))
+  88 0044 2436      		cpi r18,100
+  89 0046 3105      		cpc r19,__zero_reg__
+  90 0048 01F4      		brne .L4
+  91               	.LM9:
+  92 004a 4F5F      		subi r20,lo8(-(1))
+  93 004c 5F4F      		sbci r21,hi8(-(1))
+  94 004e 4031      		cpi r20,16
+  95 0050 5105      		cpc r21,__zero_reg__
+  96 0052 04F0      		brlt .L10
+  97 0054 40E0      		ldi r20,lo8(0)
+  98 0056 50E0      		ldi r21,hi8(0)
+  99               	.L10:
+ 100               	.LM10:
+ 101 0058 FD01      		movw r30,r26
+ 102 005a E40F      		add r30,r20
+ 103 005c F51F      		adc r31,r21
+ 104 005e E081      		ld r30,Z
+ 105 0060 20E0      		ldi r18,lo8(0)
+ 106 0062 30E0      		ldi r19,hi8(0)
+ 107 0064 00C0      		rjmp .L4
+ 108               	.LFE6:
+ 110               		.data
+ 113               	C.0.1256:
+ 114 0000 3F        		.byte	63
+ 115 0001 06        		.byte	6
+ 116 0002 5B        		.byte	91
+ 117 0003 4F        		.byte	79
+ 118 0004 66        		.byte	102
+ 119 0005 6D        		.byte	109
+ 120 0006 7D        		.byte	125
+ 121 0007 07        		.byte	7
+ 122 0008 7F        		.byte	127
+ 123 0009 6F        		.byte	111
+ 124 000a 77        		.byte	119
+ 125 000b 7C        		.byte	124
+ 126 000c 39        		.byte	57
+ 127 000d 5E        		.byte	94
+ 128 000e 79        		.byte	121
+ 129 000f 71        		.byte	113
+ 154               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\shara\AppData\Local\Temp/cccUx5BO.s:2      *ABS*:0000003f __SREG__
+C:\Users\shara\AppData\Local\Temp/cccUx5BO.s:3      *ABS*:0000003e __SP_H__
+C:\Users\shara\AppData\Local\Temp/cccUx5BO.s:4      *ABS*:0000003d __SP_L__
+C:\Users\shara\AppData\Local\Temp/cccUx5BO.s:5      *ABS*:00000034 __CCP__
+C:\Users\shara\AppData\Local\Temp/cccUx5BO.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\shara\AppData\Local\Temp/cccUx5BO.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\shara\AppData\Local\Temp/cccUx5BO.s:18     .text:00000000 main
+C:\Users\shara\AppData\Local\Temp/cccUx5BO.s:113    .data:00000000 C.0.1256
+
+UNDEFINED SYMBOLS
+__do_copy_data
