@@ -1,0 +1,83 @@
+
+STEPS OF SETTING UP AVR ATMEGA16 WITHOUT EXTERNAL CLOCK. made by Anil.
+
+STEP1: Install winavr, burn o mat, Zadig 2.2 .      
+STEP2: Setup Device drivers.
+STEP2: setup winavr, burn o mat.
+STEP3: Write code. Generate make file.
+STEP4: Generate HEX file.
+STEP5: BURN to IC using Burn o mat.
+
+
+
+
+
+
+IN-BRIEF:
+STEP1:  Download WinAvr from this link: http://winavr.sourceforge.net/download.html(~27MB).
+        Just click ok and agree licenses.
+       
+        Download Burn O Mat from this link: http://avr8-burn-o-mat.aaabbb.de/avr8_burn_o_mat_avrdude_gui_en.php(~6MB).
+        Just click ok and agree licenses.
+
+        Download Zadig from this link: http://zadig.akeo.ie/
+        Just click ok and agree licenses.
+
+
+
+STEP2:  Open Zadig, Select libusb-win32 (v1.2.6.0) in the driver list.
+
+        Connect your USBasp Programmer to the PC. 
+        Now PC will show driver error.
+	See Zadig Window and Click install WCID drivers. Complete the installation process. You may need to restart your PC.
+
+
+
+STEP3:  goto start> WinAvr XXXXXXXXXXX> Programmers Notepad. In Function bar, change plain text to C/C++. Write C Program 
+	by including avr/io.h and other headers.
+	Save As> Save in your separate myproject folder as main.c .
+
+	Now, open all programs> WinAvr XXXXXXXXXXX>Mfile. 
+	Click, MakeFile> MCUtype>Atmega>atmega16.
+	Click, MakeFile> Programmer> avrispv2.
+	Click, MakeFile> Port> USB.
+	Click, MakeFile> Enable Editing of makefile.
+ 	
+	Now in the text below, replace F_CPU = 8000000 TO F_CPU = 1000000. 
+	File> Save As> SAve in your my project folder. Do not rename the makefile.
+
+
+	
+STEP4:	Again, Open Programmers notepad window, and include this preprocessor directive "#define F_CPU 1000000UL" in your previously written program
+	Save it, and Now go to Tools> Make All.
+	
+	Now Close the WinAVR.
+	
+	
+STEP5:	Open Burn O Mat, Settings> AVRdude> 
+
+	Replace the first address with the winAvr location one, that is, "C:\WinAVR\bin\avrdude.exe." by browsing.
+
+	Replace the second address with the winAvr location one, that is, "C:\WinAVR\bin\avrconfig.exe." by browsing.
+
+
+	Click apply> OK.
+	CLose and again open Burn o Mat.
+	Settings> AVRdude> Programmer>USBASP.
+	Settings> AVRdude> Port>USB.
+	
+	Click apply> OK.
+
+
+	
+FINAL:	Connect the Atmega16, SIX ICSP pins to the burner IC pins.
+	Go to the main window of Burn o Mat,
+	Select AVR type as Atmega328p.
+	Load HEX file from your MyProject folder, and click on Write. BOOM, the Program Gets burnt to the MCU.
+
+
+
+
+
+//AvR tuts Setup
+//EDITED by SNP
